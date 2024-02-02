@@ -27,11 +27,7 @@ func New() Postgres {
 	DB_USER := os.Getenv("DB_USER")
 	DB_PASSWORD := os.Getenv("DB_PASSWORD")
 	DB_NAME := os.Getenv("DB_NAME")
-	DB_DRIVER := os.Getenv("DB_DRIVER")
-
-	if DB_DRIVER == "" {
-		DB_DRIVER = "postgres"
-	}
+	DB_DRIVER := "postgres"
 
 	if DB_HOST == "" || DB_PORT == "" || DB_USER == "" || DB_PASSWORD == "" || DB_NAME == "" {
 		panic("Missing required environment variables DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME")
@@ -116,7 +112,7 @@ func (p *Postgres) Row(q string, fields any, params ...any) error {
 	return nil
 }
 
-func (p *Postgres) MysqlQuery(q string, fields any, params ...any) error {
+func (p *Postgres) Query(q string, fields any, params ...any) error {
 
 	valueAny := reflect.ValueOf(fields)
 
